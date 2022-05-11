@@ -61,7 +61,7 @@
                         better and to drive continuous improvements across a range of work activities. Currently looking to
                         join a suitable organization that rewards hard work and offers good opportunities for career
                         development.</p>
-                    <a href="https://drive.google.com/file/d/1gLPHLtEE4dpPPtm_kXncscMUKubnoK7F/view?usp=sharing">Download CV</a>
+                    <a href="https://drive.google.com/file/d/1VXVsVImQqgWbNuN84-t8MTXYHVnZl_Ko/view?usp=sharing">Download CV</a>
                 </div>
             </div>
         </div>
@@ -201,20 +201,20 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                    <form action="#">
+                    <form onsubmit="sendEmail(); reset(); return false">
                         <div class="fields">
                             <div class="field name">
-                                <input type="text" placeholder="Name" required>
+                                <input id="name" type="text" placeholder="Name" required>
                             </div>
                             <div class="field email">
-                                <input type="email" placeholder="Email" required>
+                                <input id="email" type="email" placeholder="Email" required>
                             </div>
                         </div>
                         <div class="field">
-                            <input type="text" placeholder="Subject" required>
+                            <input id="text" type="text" placeholder="Subject" required>
                         </div>
                         <div class="field textarea">
-                            <textarea cols="30" rows="10" placeholder="Message.." required></textarea>
+                            <textarea id="message" cols="30" rows="10" placeholder="Message.." required></textarea>
                         </div>
                         <div class="button-area">
                             <button type="submit">Send message</button>
@@ -236,5 +236,24 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail(){
+                Email.send({
+                    Host : "smtp.gmail.com",
+                    Username : "marufarocean@gmail.com",
+                    Password : "yourpassword",
+                    To : 'crysis2ocean@gmail.com',
+                    From : document.getElementById("email").value,
+                    Subject : "New enquiry",
+                    Body : "Name:" + document.getElementById("name").value
+                            + "<br> Email: " + document.getElementById("email").value
+                            + "<br> Subject: " + document.getElementById("text").value
+                            + "<br> Message: " + document.getElementById("message").value
+                }).then(
+                message => alert("Message sent successfully")
+                ); 
+        }
+    </script>
 </body>
 </html>
